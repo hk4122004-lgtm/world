@@ -89,6 +89,31 @@ public class App {
             System.out.println("\nWORLD POPULATION");
             System.out.println("----------------");
             System.out.println(worldPopulation);
+            PopulationLookupReport lookupReport =
+                    new PopulationLookupReport(database.getConnection());
+
+            long asiaPopulation =
+                    lookupReport.getContinentPopulation("Asia");
+
+            long easternAsiaPopulation =
+                    lookupReport.getRegionPopulation("Eastern Asia");
+
+            long chinaPopulation =
+                    lookupReport.getCountryPopulation("China");
+
+            long maharashtraPopulation =
+                    lookupReport.getDistrictPopulation("Maharashtra");
+
+            long seoulPopulation =
+                    lookupReport.getCityPopulation("Seoul");
+
+            System.out.println("\nPOPULATION LOOKUPS");
+            System.out.println("------------------");
+            System.out.println("Asia: " + asiaPopulation);
+            System.out.println("Eastern Asia: " + easternAsiaPopulation);
+            System.out.println("China: " + chinaPopulation);
+            System.out.println("Maharashtra: " + maharashtraPopulation);
+            System.out.println("Seoul: " + seoulPopulation);
             scanner.close();
         }
 
