@@ -14,7 +14,17 @@ public class App {
             List<Country> countries =
                     countryReport.getAllCountriesByPopulation();
 
+            System.out.println("\nALL COUNTRIES BY POPULATION\n");
             countryReport.printCountryReport(countries);
+
+            CityReport cityReport =
+                    new CityReport(database.getConnection());
+
+            List<City> cities =
+                    cityReport.getAllCitiesByPopulation();
+
+            System.out.println("\nALL CITIES BY POPULATION\n");
+            cityReport.printCityReport(cities);
         }
 
         database.disconnect();
