@@ -46,7 +46,40 @@ public class CityReport {
 
         return cities;
     }
+    public List<City> getTopNCitiesByPopulation(int numberOfCities) {
+        List<City> cities = new ArrayList<>();
 
+        String sql =
+                "SELECT ci.Name, co.Name AS CountryName, " +
+                        "ci.District, ci.Population " +
+                        "FROM city ci " +
+                        "JOIN country co ON ci.CountryCode = co.Code " +
+                        "ORDER BY ci.Population DESC " +
+                        "LIMIT ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, numberOfCities);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    cities.add(new City(
+                            resultSet.getString("Name"),
+                            resultSet.getString("CountryName"),
+                            resultSet.getString("District"),
+                            resultSet.getLong("Population")
+                    ));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(
+                    "Could not generate top cities report: " + e.getMessage()
+            );
+        }
+
+        return cities;
+    }
     public void printCityReport(List<City> cities) {
         System.out.printf(
                 "%-35s %-35s %-30s %-15s%n",
