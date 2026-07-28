@@ -114,6 +114,14 @@ public class App {
             System.out.println("China: " + chinaPopulation);
             System.out.println("Maharashtra: " + maharashtraPopulation);
             System.out.println("Seoul: " + seoulPopulation);
+            LanguageReport languageReport =
+                    new LanguageReport(database.getConnection());
+
+            List<LanguageReportItem> languages =
+                    languageReport.getLanguageReport(worldPopulation);
+
+            System.out.println("\nLANGUAGE REPORT\n");
+            languageReport.printLanguageReport(languages);1
             scanner.close();
         }
 
