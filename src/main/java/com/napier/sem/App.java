@@ -121,7 +121,7 @@ public class App {
                     languageReport.getLanguageReport(worldPopulation);
 
             System.out.println("\nLANGUAGE REPORT\n");
-            languageReport.printLanguageReport(languages);1
+            languageReport.printLanguageReport(languages);
             scanner.close();
         }
 
